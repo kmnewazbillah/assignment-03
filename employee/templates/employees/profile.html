@@ -1,0 +1,22 @@
+{% extends 'employees/base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Employee Profile:<br> {{ employee.name }}</h1>
+    <div class="bg-light p-4 rounded shadow-sm">
+        <p><strong>Name:</strong> {{ employee.name }}</p>
+        <p><strong>Address:</strong> {{ employee.address }}</p>
+        <p><strong>Phone Number:</strong> {{ employee.phone_number }}</p>
+        <p><strong>Salary:</strong> {{ employee.salary }}</p>
+        <p><strong>Designation:</strong> {{ employee.designation }}</p>
+        <p><strong>Description:</strong> {{ employee.short_description }}</p>
+        <div class="d-flex justify-content-between mt-3">
+            <a href="{% url 'update_employee' employee.id %}" class="btn btn-warning">Update</a>
+            <form action="{% url 'delete_employee' employee.id %}" method="post" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+            <a href="{% url 'home' %}" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

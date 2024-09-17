@@ -1,0 +1,18 @@
+{% extends 'employees/base.html' %}
+{% block content %}
+<h1 class="text-center mb-4">Update Employee: {{ employee.name }}</h1>
+<div class="form-container">
+    <form method="post" class="bg-light p-4 rounded shadow-sm">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="d-flex justify-content-between mt-3">
+            <button type="submit" class="btn btn-warning">Update</button>
+            <a href="{% url 'home' %}" class="btn btn-secondary">Cancel</a>
+            <form action="{% url 'delete_employee' employee.id %}" method="post" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </form>
+</div>
+{% endblock %}

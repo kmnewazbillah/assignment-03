@@ -1,0 +1,15 @@
+{% extends 'employees/base.html' %}
+{% block content %}
+<h1>Employee List</h1>
+<ul class="list-group">
+    {% for employee in employees %}
+    <li class="list-group-item">
+        <strong>{{ employee.name }}</strong> - {{ employee.designation }}
+        <p>{{ employee.short_description }}</p>
+        <a href="{% url 'employee_profile' employee.id %}" class="btn btn-info">View Profile</a>
+        <a href="{% url 'update_employee' employee.id %}" class="btn btn-warning">Update</a>
+        <a href="{% url 'delete_employee' employee.id %}" class="btn btn-danger">Delete</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
